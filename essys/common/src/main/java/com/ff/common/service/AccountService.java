@@ -12,14 +12,8 @@ import com.ff.common.mapper.AccountMapper;
 @Service
 public class AccountService {
 
-    private final Account account;
-
     @Autowired
     private AccountMapper accountMapper;
-
-    AccountService(Account account) {
-        this.account = account;
-    }
 
     public SessionUserAdminDto login(String phone, String password) throws Exception {
         LambdaQueryWrapper<Account> wrapper = new LambdaQueryWrapper<>();

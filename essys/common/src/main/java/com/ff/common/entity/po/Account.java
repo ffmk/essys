@@ -1,4 +1,4 @@
-package com.ff.common.entity;
+package com.ff.common.entity.po;
 
 import java.sql.Timestamp;
 

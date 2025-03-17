@@ -15,6 +15,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ff.admin.annotation.GlobalInterceptor;
+import com.ff.common.entity.constant.Constants;
+import com.ff.common.entity.dto.SessionUserAdminDto;
 import com.ff.common.service.AccountService;
 import com.ff.common.util.CaptchaUtils;
 import com.ff.common.util.Result;
@@ -29,9 +31,6 @@ public class LoginController {
     @Autowired
     private AccountService accountService;
 
-    // 验证码 Session 键名
-    private static final String CAPTCHA_SESSION_KEY = "CAPTCHA";
-
     @GetMapping("captcha")
     public void captcha(HttpServletResponse rep, HttpServletRequest req) throws IOException {
         // 生成验证码
@@ -40,7 +39,7 @@ public class LoginController {
 
         // 存储到 Session
         HttpSession session = req.getSession();
-        session.setAttribute(CAPTCHA_SESSION_KEY, code);
+        session.setAttribute(Constants.CAPTCHA_KEY, code);
 
         // 写入响应流
         CaptchaUtils.writeToResponse(image, rep);
@@ -65,13 +64,14 @@ public class LoginController {
         }
 
         // 校验验证码
-        String code = (String) session.getAttribute(CAPTCHA_SESSION_KEY);
+        String code = (String) session.getAttribute(Constants.CAPTCHA_KEY);
         if (!captcha.equalsIgnoreCase(code)) {
             return Result.error("验证码错误");
         }
 
         try {
-            accountService.login(phone, password, captcha);
+            SessionUserAdminDto adminDto = accountService.login(phone, password);
+            session.setAttribute(Constants.SESSION_KEY, adminDto);
         } catch (Exception e) {
             return Result.error(e.getMessage());
         }

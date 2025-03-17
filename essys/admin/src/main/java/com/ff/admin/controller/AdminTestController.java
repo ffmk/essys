@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ff.common.entity.Account;
+import com.ff.common.entity.po.Account;
 import com.ff.common.mapper.AccountMapper;
 
 @RestController

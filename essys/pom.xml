@@ -16,7 +16,7 @@
     <artifactId>essys</artifactId>
     <version>0.0.1</version>
 
-    <name>stsystem</name>
+    <name>essys</name>
 
     <modules>
         <module>common</module>

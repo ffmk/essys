@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.ff</groupId>
-		<artifactId>stsystem</artifactId>
+		<artifactId>essys</artifactId>
 		<version>0.0.1</version>
 	</parent>
 

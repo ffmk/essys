@@ -31,7 +31,7 @@
     ];
     initialDatabases = [
       {
-        name = "stsys";
+        name = "essys";
       }
     ];
   };

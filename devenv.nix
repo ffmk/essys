@@ -31,7 +31,8 @@
     ];
     initialDatabases = [
       {
-        name = "essys";
+        name = "quiz";
+        schema = ./db/init.sql;
       }
     ];
   };
